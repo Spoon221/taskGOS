@@ -102,6 +102,27 @@ app.get('/tasks', (req, res) => {
 });
 
 /**
+ * ЗАДАНИЕ 2:
+ * Маршрут /login: возвращает логин (spoon222)
+ * Маршрут /hour: возвращает текущий час по Московскому времени в формате HH (например, 07 или 13)
+ */
+app.get('/login', (req, res) => {
+  res.type('text/plain; charset=utf-8');
+  res.status(200).send('spoon222');
+});
+
+app.get('/hour', (req, res) => {
+  const formatter = new Intl.DateTimeFormat('ru-RU', {
+    timeZone: 'Europe/Moscow',
+    hour: '2-digit',
+    hourCycle: 'h23'
+  });
+  const moscowHour = formatter.format(new Date()).padStart(2, '0');
+  res.type('text/plain; charset=utf-8');
+  res.status(200).send(moscowHour);
+});
+
+/**
  * Заготовка для Задания 2 (страница)
  */
 app.get('/task2', (req, res) => {
@@ -119,7 +140,11 @@ app.get('/task2', (req, res) => {
     </head>
     <body>
       <h2>Страница для Задания 2</h2>
-      <p>Здесь будет логика и интерфейс второго задания.</p>
+      <p>Маршруты:</p>
+      <ul>
+        <li><a href="/login" target="_blank">/login</a> — логин</li>
+        <li><a href="/hour" target="_blank">/hour</a> — текущий час (МСК)</li>
+      </ul>
       <a href="/tasks">← Назад к списку заданий</a>
     </body>
     </html>
