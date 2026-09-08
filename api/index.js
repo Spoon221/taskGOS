@@ -87,12 +87,16 @@ app.get('/tasks', (req, res) => {
         <h1>Список заданий</h1>
         <ul>
           <li>
-            <span><strong>Задание 1:</strong> Корневой ответ и кастомные заголовки</span>
+            <span><strong>Задание 1:</strong> Корневой ответ (spoon222)</span>
             <a href="/" target="_blank">Открыть (/)</a>
           </li>
           <li>
-            <span><strong>Задание 2:</strong> <i>(Зарезервировано)</i></span>
+            <span><strong>Задание 2:</strong> Логин и Московское время</span>
             <a href="/task2">Открыть (/task2)</a>
+          </li>
+          <li>
+            <span><strong>Задание 3:</strong> b75bd8bc-b016-4695-aa15-5548ae83244c</span>
+            <a href="/task3" target="_blank">Открыть (/task3)</a>
           </li>
         </ul>
       </div>
@@ -123,7 +127,24 @@ app.get('/hour', (req, res) => {
 });
 
 /**
- * Заготовка для Задания 2 (страница)
+ * ЗАДАНИЕ 3:
+ * Текст: b75bd8bc-b016-4695-aa15-5548ae83244c
+ * Заголовки:
+ *   X-Author: b75bd8bc-b016-4695-aa15-5548ae83244c
+ *   Access-Control-Allow-Origin: *
+ */
+const handleTask3 = (req, res) => {
+  res.setHeader('X-Author', 'b75bd8bc-b016-4695-aa15-5548ae83244c');
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.type('text/plain; charset=utf-8');
+  res.status(200).send('b75bd8bc-b016-4695-aa15-5548ae83244c');
+};
+
+app.get('/task3', handleTask3);
+app.get('/b75bd8bc-b016-4695-aa15-5548ae83244c', handleTask3);
+
+/**
+ * Страница для Задания 2
  */
 app.get('/task2', (req, res) => {
   res.type('text/html; charset=utf-8');
